@@ -7,25 +7,53 @@
     <style>
         :root { --taraji-red: #d32f2f; --taraji-yellow: #fbc02d; --dark: #0a0a0a; }
         body { margin: 0; background-color: var(--dark); color: white; font-family: sans-serif; overflow-x: hidden; direction: rtl; }
+        
         .virage-wrapper { display: flex; min-height: 100vh; }
-        .side-banner { width: 45px; background: black; color: var(--taraji-yellow); border-left: 3px solid var(--taraji-red); writing-mode: vertical-rl; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
-        .mentality-text { animation: scroll 10s linear infinite; white-space: nowrap; }
+        
+        /* الشريط الجانبي المتحرك */
+        .side-banner { width: 45px; background: black; color: var(--taraji-yellow); border-left: 3px solid var(--taraji-red); writing-mode: vertical-rl; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; overflow: hidden; position: relative; }
+        .mentality-text { animation: scroll 15s linear infinite; white-space: nowrap; }
         @keyframes scroll { 0% { transform: translateY(100%); } 100% { transform: translateY(-100%); } }
-        .container { flex: 1; padding: 20px; max-width: 800px; margin: 0 auto; }
+        
+        .container { flex: 1; padding: 20px; max-width: 800px; margin: 0 auto; padding-bottom: 100px; }
         .main-header { text-align: center; margin-bottom: 30px; }
         .channel-logo { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--taraji-yellow); box-shadow: 0 0 20px var(--taraji-red); }
         .ultras-text { color: var(--taraji-red); font-style: italic; }
+        
+        /* المنتجات */
         .products { display: flex; flex-direction: column; gap: 25px; }
         .ultras-card { background: #151515; border: 1px solid #333; padding: 20px; text-align: center; border-radius: 10px; position: relative; }
-        .pack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .pack-grid img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 5px; background: #222; }
-        .pack-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .pack-grid-2 img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 5px; background: #222; }
+        
+        .pack-grid, .pack-grid-2 { display: grid; gap: 10px; margin-bottom: 15px; }
+        .pack-grid { grid-template-columns: 1fr 1fr; }
+        .pack-grid-2 { grid-template-columns: 1fr 1fr; }
+        img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 5px; background: #222; }
+        
         .stamp { position: absolute; top: 10px; left: -5px; background: var(--taraji-red); color: white; padding: 5px 12px; transform: rotate(-15deg); font-weight: bold; font-size: 12px; z-index: 10; }
         h3 { font-size: 19px; margin: 15px 0; color: var(--taraji-yellow); }
+        
         .buy-btn { background: linear-gradient(45deg, var(--taraji-red), #900); color: white; border: none; padding: 15px; width: 100%; font-weight: bold; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px; }
-        .audio-controls { margin-top: 30px; text-align: center; padding-bottom: 20px; }
-        .music-btn { background: black; color: var(--taraji-yellow); border: 1px solid var(--taraji-red); padding: 10px 20px; border-radius: 30px; cursor: pointer; }
+
+        /* زر الصوت الثابت (دائما ظاهر) */
+        .audio-fixed-control {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+        }
+        .music-btn { 
+            background: rgba(0, 0, 0, 0.8); 
+            color: var(--taraji-yellow); 
+            border: 2px solid var(--taraji-red); 
+            padding: 12px 18px; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(211, 47, 47, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
     </style>
 </head>
 <body>
@@ -34,9 +62,15 @@
         <source src="https://dl.dropboxusercontent.com/scl/fi/vjq8frm1ha1s2we3yz7wf/_-Album-La-Guerra-Contra-EL-Olvido-MP3_160K.mp3?rlkey=wo0cfet4e16tj2tjzcu77rpky&dl=1" type="audio/mpeg">
     </audio>
 
+    <div class="audio-fixed-control">
+        <button id="music-toggle" class="music-btn">🔈 تشغيل الأجواء</button>
+    </div>
+
     <div class="virage-wrapper">
         <aside class="side-banner">
-            <div class="mentality-text">MENTALITY • MENTALITY • MENTALITY</div>
+            <div class="mentality-text">
+                ESPERANCE MENTALITY 46846361 • ESPERANCE MENTALITY 46846361 • ESPERANCE MENTALITY 46846361 • ESPERANCE MENTALITY 46846361 • ESPERANCE MENTALITY 46846361 • ESPERANCE MENTALITY 46846361
+            </div>
         </aside>
 
         <div class="container">
@@ -47,7 +81,6 @@
             </header>
 
             <section class="products">
-                
                 <div class="card ultras-card">
                     <div class="stamp">Top Pack</div>
                     <div class="pack-grid">
@@ -89,12 +122,7 @@
                     <h3>Pack Fedayn esperantiste 09</h3>
                     <button class="buy-btn">اطلب عبر واتساب</button>
                 </div>
-
             </section>
-
-            <div class="audio-controls">
-                <button id="music-toggle" class="music-btn">🔈 تشغيل الأجواء</button>
-            </div>
         </div>
     </div>
 
@@ -103,6 +131,7 @@
         const audio = document.getElementById('ultras-bg-music');
         const btn = document.getElementById('music-toggle');
 
+        // محاولة التشغيل عند أول ضغطة في أي مكان في الصفحة
         document.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play().catch(() => {});
@@ -110,15 +139,19 @@
             }
         }, { once: true });
 
+        // التحكم عبر الزر الثابت
         btn.addEventListener('click', (e) => {
-            e.stopPropagation();
+            e.stopPropagation(); // منع تداخل الأحداث
             if (audio.paused) {
-                audio.play(); btn.innerText = "🔊 الأجواء مشعلة";
+                audio.play();
+                btn.innerText = "🔊 الأجواء مشعلة";
             } else {
-                audio.pause(); btn.innerText = "🔈 تشغيل الأجواء";
+                audio.pause();
+                btn.innerText = "🔈 تشغيل الأجواء";
             }
         });
 
+        // طلب الواتساب
         document.querySelectorAll('.buy-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const name = button.parentElement.querySelector('h3').innerText;
